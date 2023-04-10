@@ -3,6 +3,11 @@
 **Backup single folders every x amount of time.**
 
 This is a very basic backup program thats great for game servers like minecraft or other items that need to have an x amount of copies.
+
+The source code for this is available as well as the installer.
+only for windows currently
+Built in electron
+
 ## Resources for using the app
 
 1. Select a source or origin folder.
