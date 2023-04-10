@@ -1,0 +1,56 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to right, #89f7fe, #66a6ff); /* Add this line for the gradient background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 8px 16px; /* Adjust padding */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px; /* Add this line to make buttons rounded */
+    transition-duration: 0.3s;
+  }
+  
+  #button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  #button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  #select-folder-buttons,
+  #start-stop-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+/* Add styles here to customize the appearance of your app */

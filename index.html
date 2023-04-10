@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Backup Program</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Backup Program</h1>
+    <div id="button-container">
+      <div id="select-folder-buttons">
+        <button id="select-source-folder-btn">Select source folder</button>
+        <button id="select-destination-folder-btn">Select destination folder</button>
+      </div>
+      <div>
+        <label for="backup-interval">Backup interval:</label>
+        <select id="backup-interval">
+          <option value="10000">Every 10 seconds</option>
+          <option value="3600000">Every hour</option>
+          <option value="21600000">Every 6 hours</option>
+          <option value="43200000">Every 12 hours</option>
+          <option value="86400000">Every 24 hours</option>
+          <option value="172800000">Every 48 hours</option>
+          <option value="custom">Custom</option>
+        </select>
+        <input type="number" id="custom-interval-hours" min="0" placeholder="Enter hours" style="display: none;" />
+        <input type="number" id="custom-interval-days" min="0" placeholder="Enter days" style="display: none;" /> <!-- Add this input field -->
+      </div>
+      <div id="start-stop-buttons">
+        <button id="copy-folder-btn">Start backup</button>
+        <button id="stop-copying-btn">Stop copying</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
