@@ -6,7 +6,7 @@ This is a very basic backup program thats great for game servers like minecraft 
 
 The source code for this is available as well as the installer.
 only for windows currently
-Built in electron
+Built using Electron
 
 ## Resources for using the app
 
