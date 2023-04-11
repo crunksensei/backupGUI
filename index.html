@@ -12,6 +12,10 @@
         <button id="select-source-folder-btn">Select source folder</button>
         <button id="select-destination-folder-btn">Select destination folder</button>
       </div>
+      <div id="selected-folders">
+        <p id="selected-source-folder">Source folder: None</p>
+        <p id="selected-destination-folder">Destination folder: None</p>
+      </div>
       <div>
         <label for="backup-interval">Backup interval:</label>
         <select id="backup-interval">
@@ -23,9 +27,13 @@
           <option value="172800000">Every 48 hours</option>
           <option value="custom">Custom</option>
         </select>
-        <input type="number" id="custom-interval-hours" min="0" placeholder="Enter hours" style="display: none;" />
-        <input type="number" id="custom-interval-days" min="0" placeholder="Enter days" style="display: none;" /> <!-- Add this input field -->
-      </div>
+        <div id="custom-interval-container" style="display: none;">
+          <label for="custom-interval-hours">Hours:</label>
+          <input type="number" id="custom-interval-hours" min="0" placeholder="Enter hours" value="1" />
+          <label for="custom-interval-days">Days:</label>
+          <input type="number" id="custom-interval-days" min="0" placeholder="Enter days" value="0" />
+        </div>
+        </div>
       <div id="start-stop-buttons">
         <button id="copy-folder-btn">Start backup</button>
         <button id="stop-copying-btn">Stop copying</button>

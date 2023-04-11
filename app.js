@@ -3,49 +3,50 @@ const { ipcRenderer } = require('electron');
 let sourceFolderPath, destinationFolderPath;
 let backupInterval;
 
-async function performBackup() {
-    if (sourceFolderPath && destinationFolderPath) {
-      const success = await ipcRenderer.invoke('copy-folder', sourceFolderPath, destinationFolderPath);
-      if (success) {
-        console.log('Backup successful!');
-      } else {
-        console.error('Backup failed!');
-      }
+async function performBackup(showAlert = true) {
+  if (sourceFolderPath && destinationFolderPath) {
+    const success = await ipcRenderer.invoke('copy-folder', sourceFolderPath, destinationFolderPath);
+    if (success) {
+      console.log('Backup successful!');
     } else {
-      alert('Please select both source and destination folders before copying.');
+      console.error('Backup failed!');
     }
+  } else if (showAlert) {
+    alert('Please select both source and destination folders before copying.');
   }
+}
 
 document.getElementById('select-source-folder-btn').addEventListener('click', async () => {
-    const result = await ipcRenderer.invoke('select-source-folder');
-    if (result) {
-      sourceFolderPath = result;
-      console.log(`Selected source folder: ${sourceFolderPath}`);
-    }
-  });
-
-  document.getElementById('select-destination-folder-btn').addEventListener('click', async () => {
-    const result = await ipcRenderer.invoke('select-destination-folder');
-    if (result) {
-      destinationFolderPath = result;
-      console.log(`Selected destination folder: ${destinationFolderPath}`);
-    }
-  });
-
-document.getElementById('backup-interval').addEventListener('change', () => {
-  const customIntervalHours = document.getElementById('custom-interval-hours');
-  const customIntervalDays = document.getElementById('custom-interval-days');
-  if (document.getElementById('backup-interval').value === 'custom') {
-    customIntervalHours.style.display = 'inline-block';
-    customIntervalDays.style.display = 'inline-block';
-  } else {
-    customIntervalHours.style.display = 'none';
-    customIntervalDays.style.display = 'none';
+  const result = await ipcRenderer.invoke('select-source-folder');
+  if (result) {
+    sourceFolderPath = result;
+    console.log(`Selected source folder: ${sourceFolderPath}`);
+    // Update the text content of the 'selected-source-folder' element
+    document.getElementById('selected-source-folder').textContent = `Source folder: ${sourceFolderPath}`;
   }
 });
 
+document.getElementById('select-destination-folder-btn').addEventListener('click', async () => {
+  const result = await ipcRenderer.invoke('select-destination-folder');
+  if (result) {
+    destinationFolderPath = result;
+    console.log(`Selected destination folder: ${destinationFolderPath}`);
+    // Update the text content of the 'selected-destination-folder' element
+    document.getElementById('selected-destination-folder').textContent = `Destination folder: ${destinationFolderPath}`;
+  }
+});
+  document.getElementById('backup-interval').addEventListener('change', () => {
+    const customIntervalContainer = document.getElementById('custom-interval-container');
+    if (document.getElementById('backup-interval').value === 'custom') {
+      customIntervalContainer.style.display = 'block';
+    } else {
+      customIntervalContainer.style.display = 'none';
+    }
+  });
+  
+
 document.getElementById('copy-folder-btn').addEventListener('click', async () => {
-  await performBackup();
+  await performBackup(false);
   clearInterval(backupInterval);
   let intervalValue;
   if (document.getElementById('backup-interval').value === 'custom') {

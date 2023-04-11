@@ -66,9 +66,9 @@ ipcMain.handle('select-destination-folder', async () => {
 });
 
 ipcMain.handle('copy-folder', async (event, sourceFolderPath, destinationFolderPath) => {
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const now = new Date();
+  const timestamp = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}-${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}-${String(now.getMinutes()).padStart(2, '0')}-${String(now.getSeconds()).padStart(2, '0')}`;
   const newDestination = path.join(destinationFolderPath, `Backup-${timestamp}`);
-
   const options = {
     filter: (src) => {
       return path.extname(src) !== '.lock';
