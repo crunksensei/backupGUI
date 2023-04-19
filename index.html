@@ -33,11 +33,17 @@
           <label for="custom-interval-days">Days:</label>
           <input type="number" id="custom-interval-days" min="0" placeholder="Enter days" value="0" />
         </div>
+        <div>
+          <label for="max-backups">Max backups to keep:</label>
+          <input type="number" id="max-backups" min="1" value="10" />
         </div>
+      </div>
       <div id="start-stop-buttons">
         <button id="copy-folder-btn">Start backup</button>
         <button id="stop-copying-btn">Stop copying</button>
       </div>
+      <progress id="progress-bar" value="0" max="100"></progress>
+      <p id="last-backup">Last backup: None</p>
     </div>
     <script src="app.js"></script>
   </body>

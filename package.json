@@ -4,8 +4,13 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
-  },
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  }
+  ,
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
     "Electron",
@@ -17,9 +22,29 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^23.2.1"
+    "electron": "^23.2.1",
+    "electron-builder": "^23.6.0"
   },
   "dependencies": {
-    "fs-extra": "^11.1.1"
+    "electron-store": "^8.1.0",
+    "fs-extra": "^11.1.1",
+    "klaw": "^4.1.0",
+    "klaw-sync": "^6.0.0"
+  },
+  "productName": "Backup Program",
+  "build": {
+  "appId": "com.yourcompany.backupprogram",
+  "asar": true,
+  "mac": {
+    "category": "public.app-category.utilities",
+    "target": "dmg"
+  },
+  "win": {
+    "target": "nsis"
+  },
+  "linux": {
+    "target": "AppImage"
   }
+}
+
 }
