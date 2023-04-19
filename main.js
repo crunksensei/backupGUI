@@ -190,13 +190,15 @@ ipcMain.handle('get-destination-folder', () => {
   return store.get('destinationFolderPath');
 });
 
+ipcMain.handle('get-max-backups', () => {
+  return store.get('maxBackups');
+});
+
 ipcMain.handle('get-backup-interval', () => {
   return store.get('backupInterval');
 });
 
-ipcMain.handle('get-max-backups', () => {
-  return store.get('maxBackups');
-});
+
 
 ipcMain.handle('save-last-backup', async (_, lastBackup) => {
   try {
@@ -212,7 +214,6 @@ ipcMain.handle('get-last-backup', async () => {
   try {
     if (fs.existsSync(lastBackupFile)) {
       const lastBackup = fs.readFileSync(lastBackupFile, 'utf-8');
-      console.log(store.get('backupInterval'))
       return lastBackup;
     }
     return null;
@@ -221,4 +222,3 @@ ipcMain.handle('get-last-backup', async () => {
     return null;
   }
 });
-

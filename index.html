@@ -28,10 +28,10 @@
           <option value="custom">Custom</option>
         </select>
         <div id="custom-interval-container" style="display: none;">
-          <label for="custom-interval-hours">Hours:</label>
-          <input type="number" id="custom-interval-hours" min="0" placeholder="Enter hours" value="1" />
           <label for="custom-interval-days">Days:</label>
           <input type="number" id="custom-interval-days" min="0" placeholder="Enter days" value="0" />
+          <label for="custom-interval-hours">Hours:</label>
+          <input type="number" id="custom-interval-hours" min="0" placeholder="Enter hours" value="0" />
         </div>
         <div>
           <label for="max-backups">Max backups to keep:</label>
@@ -44,6 +44,7 @@
       </div>
       <progress id="progress-bar" value="0" max="100"></progress>
       <p id="last-backup">Last backup: None</p>
+      <p id="next-backup"></p>
     </div>
     <script src="app.js"></script>
   </body>
