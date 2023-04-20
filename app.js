@@ -1,18 +1,18 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, app } = require('electron');
 
 let sourceFolderPath, destinationFolderPath, maxBackups;
 let backupInterval;
-
-ipcRenderer.on('progress', (event, progress) => {
-  console.log('Received progress:', progress);
-  progressBar.value = progress;
-});
 
 async function performBackup(showAlert = true) {
   
   if (sourceFolderPath && destinationFolderPath) {
     const maxBackups = parseInt(document.getElementById('max-backups').value);
-    const success = await ipcRenderer.invoke('copy-folder', sourceFolderPath, destinationFolderPath, maxBackups);
+    const success = await ipcRenderer.invoke(
+      'copy-folder',
+      sourceFolderPath,
+      destinationFolderPath,
+      maxBackups
+    );
 
     if (success) {
       console.log('Backup successful!');
@@ -104,18 +104,13 @@ document.getElementById('copy-folder-btn').addEventListener('click', async () =>
   if (intervalValue === 0) {
     alert('Please enter a valid custom interval.');
   } else {
-    await performBackup(false);
+    await performBackup(false, true);
     startBackupInterval(intervalValue);
     updateNextBackupTime(intervalValue);
-  // // Save the max backups and interval settings
-  // await ipcRenderer.invoke('save-backup-interval', document.getElementById('backup-interval').value);
-  // await ipcRenderer.invoke('save-max-backups', parseInt(document.getElementById('max-backups').value));
-  // await ipcRenderer.invoke('save-custom-interval-hours', parseInt(document.getElementById('custom-interval-hours').value));
-  // await ipcRenderer.invoke('save-custom-interval-days', parseInt(document.getElementById('custom-interval-days').value));
   }
 });
 
-document.getElementById('stop-copying-btn').addEventListener('click', () => {
+document.getElementById('stop-copying-btn').addEventListener('click', async () => {
   clearInterval(backupInterval);
 });
 
@@ -161,3 +156,4 @@ document.getElementById('max-backups').addEventListener('change', async () => {
   }
 
 })();
+
